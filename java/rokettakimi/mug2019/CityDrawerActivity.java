@@ -1,9 +1,12 @@
 package rokettakimi.mug2019;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,10 +17,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class CityDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawer;
+    private NavigationContentManager navContentManager;
+    private Animation fadeOut;
+    private TextView cityTitle;
+
+    public final int FADE_OUT_DURATİON = 7000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +43,67 @@ public class CityDrawerActivity extends AppCompatActivity
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         //Hiding action bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_city);
-
         setContentView(R.layout.activity_city_drawer);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
 
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);*/
-        /*drawer.setDrawerListener(toggle);
-        toggle.syncState();*/
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //Navigation View
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //View headerLayout = navigationView.getHeaderView(0);
+
+        //Getting references to navigation items
+        View headerLayout = navigationView.getHeaderView(0);
+        ImageView navigationImageView = (ImageView) findViewById(R.id.navigationImg);
+        TextView pinNameView = (TextView) findViewById(R.id.pinName);
+        TextView pinOriginView =(TextView) findViewById(R.id.pinOrigin);
+        TextView navigationContent = (TextView) findViewById(R.id.navigationContent);
+
+        //Reference to city title
+        TextView cityTitle = (TextView)findViewById(R.id.cityTitle);
+
+        //Constructing navigation content manager
+        navContentManager = new NavigationContentManager(navigationImageView,pinNameView,pinOriginView,navigationContent);
+
+        //Fadeout animation
+        fadeOut = new AlphaAnimation(1.0f , 0.0f);
+        fadeOut.setDuration(FADE_OUT_DURATİON);
+        fadeOut.setFillAfter(true);
+        cityTitle.startAnimation(fadeOut);
     }
 
+    public void onClick(View view){
+        int viewID = view.getId();
+
+        switch(viewID){
+            case R.id.colosseumButton:
+                drawer.openDrawer(GravityCompat.START);
+                navContentManager.setNavigationDrawerContent(R.drawable.colosseum,"Kolezyum","Roma İmparatorluğu",getString(R.string.colosseum_desc));
+                break;
+            case R.id.stadiumButton:
+                drawer.openDrawer(GravityCompat.START);
+                navContentManager.setNavigationDrawerContent(R.drawable.stadium,"Domitian Stadyumu","Roma İmparatorluğu",getString(R.string.stadium_desc));
+                break;
+            case R.id.pantheonButton:
+                drawer.openDrawer(GravityCompat.START);
+                navContentManager.setNavigationDrawerContent(R.drawable.pantheon,"Pantheon Tapınağı","Roma İmparatorluğu",getString(R.string.pantheon_desc));
+                break;
+            case R.id.templeButton:
+                drawer.openDrawer(GravityCompat.START);
+                navContentManager.setNavigationDrawerContent(R.drawable.temple_of_jupiter,"Jüpiter Tapınağı","Roma İmparatorluğu",getString(R.string.temple_desc));
+                break;
+            case R.id.barracksButton:
+                drawer.openDrawer(GravityCompat.START);
+                navContentManager.setNavigationDrawerContent(R.drawable.barracks,"Kışla","Roma İmparatorluğu",getString(R.string.barracks_desc));
+                break;
+            case R.id.scrollButton:
+                Intent intent = new Intent(this, CityDrawerActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    //////////////////////////////////////NAVIGATION DRAWER METHODS///////////////////////////////////
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -102,15 +161,5 @@ public class CityDrawerActivity extends AppCompatActivity
         return true;
     }
 
-    public void onClick(View view){
-        int viewID = view.getId();
 
-        switch(viewID){
-            case R.id.colosseumButton:
-                Toast.makeText(getApplicationContext(),"Colosseum clicked",Toast.LENGTH_SHORT).show();
-            case R.id.stadiumButton:
-                Toast.makeText(getApplicationContext(),"Stadium clicked",Toast.LENGTH_SHORT).show();
-        }
-
-    }
 }
