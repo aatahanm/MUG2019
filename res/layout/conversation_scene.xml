@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConversationScene">
+
+    <ImageView
+        android:id="@+id/sceneBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/cole_thomas_the_consummation_the_course_of_the_empire_1836" />
+
+    <ImageView
+        android:id="@+id/sceneRightChar"
+        android:layout_width="220dp"
+        android:layout_height="311dp"
+        android:layout_marginStart="490dp"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/rightchar"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/roman_statue_right" />
+
+    <ImageView
+        android:id="@+id/sceneLeftChar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="510dp"
+        android:contentDescription="@string/leftchar"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/roman_statue_left" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/charSelectTextCardView"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="150dp"
+        app:cardBackgroundColor="#80000000"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:contentPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/charTextCardView"
+        app:layout_constraintVertical_bias="1.0" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <rokettakimi.mug2019.Typewriter
+                android:id="@+id/questionInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="serif"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="12sp" />
+
+            <rokettakimi.mug2019.Typewriter
+                android:id="@+id/selectText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="serif"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="12sp" />
+
+            <rokettakimi.mug2019.Typewriter
+                android:id="@+id/selectText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="serif"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="12sp" />
+
+            <rokettakimi.mug2019.Typewriter
+                android:id="@+id/selectText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="serif"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/charTextCardView"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="160dp"
+        app:cardBackgroundColor="#90000000"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:contentPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <rokettakimi.mug2019.Typewriter
+            android:id="@+id/charTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="serif"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="12sp"
+            android:theme="@style/Base.CardView" />
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/charTextViewNextButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
