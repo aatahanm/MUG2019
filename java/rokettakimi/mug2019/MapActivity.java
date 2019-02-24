@@ -3,6 +3,7 @@ package rokettakimi.mug2019;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,9 @@ public class MapActivity extends AppCompatActivity {
 
     private boolean commanderSelected = false;
     private boolean conqueredGaul = false;
-    private Animation fadeOut;
+    private Animation fadeOut,fadeOutText,fadeIn;
+    private boolean getTroops = false;
+    private MediaPlayer ring;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,36 @@ public class MapActivity extends AppCompatActivity {
 
         TextView eventTitle = findViewById(R.id.title);
 
+        fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
+        fadeIn.setDuration(1200);
+        fadeIn.setFillAfter(true);
+
         fadeOut = new AlphaAnimation(1.0f , 0.0f);
         fadeOut.setDuration(9000);
         fadeOut.setFillAfter(true);
 
+        fadeOutText = new AlphaAnimation(1.0f , 0.0f);
+        fadeOutText.setDuration(2000);
+        fadeOutText.setFillAfter(true);
+
+        TextView text = (TextView)findViewById(R.id.narratorText);
+        text.setText(getString(R.string.narrator_map));
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.narrator).startAnimation(fadeOutText);
+                findViewById(R.id.narratorText).startAnimation(fadeOutText);
+            }
+        }, 10000);
+
+
         eventTitle.startAnimation(fadeOut);
 
+        ring= MediaPlayer.create(getApplicationContext(),R.raw.campaing_finished);
+        if (!ring.isPlaying())
+            ring.start();
     }
 
     public void commanderSelected(View v){
@@ -79,6 +106,7 @@ public class MapActivity extends AppCompatActivity {
     }
 
     public void gatherSoldiers(View view){
+        getTroops = true;
         int duration = 1000;
         if(commanderSelected){
             View v = findViewById(R.id.caesarModel);
@@ -131,27 +159,49 @@ public class MapActivity extends AppCompatActivity {
     }
 
     public void conquerGaul(int count){
-        View v = findViewById(R.id.background);
-        while (count < 8 && !conqueredGaul){
-            if(count == 1){
-                setImage(v,R.drawable.gaul_siege1,3500+count*1500);
-            }else if (count == 2){
-                setImage(v,R.drawable.gaul_siege2,3500+count*1500);
-            }else if (count == 3){
-                setImage(findViewById(R.id.gallicCity1Button),R.drawable.rome_city2,3500+count*1500);
+        if(getTroops) {
+            View v = findViewById(R.id.background);
+            while (count < 7 && !conqueredGaul) {
+                if (count == 1) {
+                    setImage(v, R.drawable.gaul_siege1, 3500 + count * 1500);
+                } else if (count == 2) {
+                    setImage(v, R.drawable.gaul_siege2, 3500 + count * 1500);
+                } else if (count == 3) {
+                    setImage(findViewById(R.id.gallicCity1Button), R.drawable.rome_city2, 3500 + count * 1500);
 
-            }else if (count == 4){
-                setImage(v,R.drawable.gaul_siege3,3500+count*1500);
-            }else if (count == 5){
-                setImage(findViewById(R.id.gallicCity2Button),R.drawable.rome_city3,3500+count*1500);
-            }else if (count == 6){
-                setImage(v,R.drawable.gaul_siege4,3500+count*1500);
-            }else if (count == 7){
-                setImage(findViewById(R.id.romeCityButton),R.drawable.city_movable,3500+count*1500);
+                } else if (count == 4) {
+                    setImage(v, R.drawable.gaul_siege3, 3500 + count * 1500);
+                } else if (count == 5) {
+                    setImage(findViewById(R.id.gallicCity2Button), R.drawable.rome_city3, 3500 + count * 1500);
+                } else if (count == 6) {
+                    setImage(v, R.drawable.gaul_siege4, 3500 + count * 1500);
+                }
+                count += 1;
             }
-            count+=1;
+            conqueredGaul = true;
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    TextView text = (TextView)findViewById(R.id.narratorText);
+                    text.setText(getString(R.string.campaign_finished));
+                    findViewById(R.id.narrator).startAnimation(fadeIn);
+                    findViewById(R.id.narratorText).startAnimation(fadeIn);
+                }
+            }, 13000);
+
+            final Handler handler2 = new Handler();
+            handler2.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.narrator).startAnimation(fadeOutText);
+                    findViewById(R.id.narratorText).startAnimation(fadeOutText);
+                }
+            }, 19000);
+
+
         }
-        conqueredGaul = true;
     }
 
     public void setImage(View v,final int id, int delay){
