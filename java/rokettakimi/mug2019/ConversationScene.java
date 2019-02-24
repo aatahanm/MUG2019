@@ -4,11 +4,12 @@ import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 public class ConversationScene extends AppCompatActivity {
 
@@ -42,31 +43,25 @@ public class ConversationScene extends AppCompatActivity {
         writer.setCharacterDelay(50);
         writer.animateText("Merhaba, Regulus! Bugün de yüzünden\nçok yorgun olduğun anlaşılıyor.\nAma biliyorum ki sen en güçlü ve\nyetenekli komutanlardan birisin!");
 
-        final Typewriter changeQuestionInfo = (Typewriter) findViewById(R.id.questionInfo);
-        final Typewriter changeCharTextView = (Typewriter) findViewById(R.id.charTextView);
-
-        final Button changeCharTextButton = (Button) findViewById(R.id.charTextViewNextButton);
-        final Typewriter changeSelectText1 = (Typewriter) findViewById(R.id.selectText1);
-        final Typewriter changeSelectText2 = (Typewriter) findViewById(R.id.selectText2);
-        final Typewriter changeSelectText3 = (Typewriter) findViewById(R.id.selectText3);
+        final Button changeCharTextButton = findViewById(R.id.charTextViewNextButton);
+        final Typewriter changeSelectText1 = findViewById(R.id.selectText1);
+        final Typewriter changeSelectText2 = findViewById(R.id.selectText2);
+        final Typewriter changeSelectText3 = findViewById(R.id.selectText3);
 
         //disable changeCharText
         changeCharTextButton.setEnabled(false);
-
-        //disabled selectTexts
-        changeSelectText1.setEnabled(false);
-        changeSelectText2.setEnabled(false);
-        changeSelectText3.setEnabled(false);
+        changeCharTextButton.setVisibility(View.INVISIBLE);
 
         //disabled CardViewSelects
-        final CardView changeCardViewSelects = (CardView) findViewById(R.id.charSelectTextCardView);
-        changeCardViewSelects.setVisibility(View.INVISIBLE);
+        final LinearLayout changeCharSelectTextView = (LinearLayout) findViewById(R.id.charSelectTextView);
+        changeCharSelectTextView.setVisibility(View.INVISIBLE);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 //enable changeCharText
+                changeCharTextButton.setVisibility(View.VISIBLE);
                 changeCharTextButton.setEnabled(true);
             }
         }, 7500);
@@ -78,14 +73,14 @@ public class ConversationScene extends AppCompatActivity {
                 if (v.equals(changeCharTextButton)) {
                     if(conversationState == 1){
                         Typewriter writer = (Typewriter)findViewById(R.id.charTextView);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Sana da merhaba, Gallus! Biliyorsun\nki ben ordumla sefere çıktığımda çok\nuzun yollar gidebiliyoruz. Ne kadar\ngidebildiğimizi tahmin edebilir misin?");
 
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                changeCardViewSelects.setVisibility(View.VISIBLE);
+                                changeCharSelectTextView.setVisibility(View.VISIBLE);
 
                                 Typewriter writer2 = (Typewriter)findViewById(R.id.questionInfo);
                                 writer2.setCharacterDelay(0);
@@ -106,8 +101,11 @@ public class ConversationScene extends AppCompatActivity {
                         }, 8000);
 
                         //disable changeCharText
+                        changeCharTextButton.setVisibility(View.INVISIBLE);
                         changeCharTextButton.setEnabled(false);
 
+
+                        System.out.println("aga");
                         //enable selectTexts
                         changeSelectText1.setEnabled(true);
                         changeSelectText2.setEnabled(true);
@@ -115,7 +113,7 @@ public class ConversationScene extends AppCompatActivity {
                     }
                     else if(conversationState == 2){
                         Typewriter writer = (Typewriter)findViewById(R.id.charTextView);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Aferin! Doğru bildin. Ordumdan ve\nkendimden çok gurur duyuyorum.\nÇünkü hiç bir olaya geç kalmıyoruz!");
 
                         Typewriter writer2 = (Typewriter)findViewById(R.id.questionInfo);
@@ -123,6 +121,7 @@ public class ConversationScene extends AppCompatActivity {
                         writer2.animateText("");
 
                         //disable changeCharText
+                        changeCharTextButton.setVisibility(View.INVISIBLE);
                         changeCharTextButton.setEnabled(false);
 
                         final Handler handler = new Handler();
@@ -130,6 +129,7 @@ public class ConversationScene extends AppCompatActivity {
                             @Override
                             public void run() {
                                 //enable changeCharText
+                                changeCharTextButton.setVisibility(View.VISIBLE);
                                 changeCharTextButton.setEnabled(true);
                             }
                         }, 5000);
@@ -138,10 +138,11 @@ public class ConversationScene extends AppCompatActivity {
                     }
                     else if(conversationState == 3) {
                         Typewriter writer = (Typewriter)findViewById(R.id.charTextView);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Ben de sizle çok gurur duyuyorum.\nÖzür dilerim ama bu konuşmayı\nkısa keseceğim çünkü yılın en büyük\nolayına yetişmem lazım!");
 
                         //disable changeCharText
+                        changeCharTextButton.setVisibility(View.INVISIBLE);
                         changeCharTextButton.setEnabled(false);
 
                         final Handler handler = new Handler();
@@ -149,6 +150,7 @@ public class ConversationScene extends AppCompatActivity {
                             @Override
                             public void run() {
                                 //enable changeCharText
+                                changeCharTextButton.setVisibility(View.VISIBLE);
                                 changeCharTextButton.setEnabled(true);
                             }
                         }, 5000);
@@ -183,6 +185,7 @@ public class ConversationScene extends AppCompatActivity {
                         }, 5000);
 
                         //disable changeCharText
+                        changeCharTextButton.setVisibility(View.INVISIBLE);
                         changeCharTextButton.setEnabled(false);
 
                         //enable selectTexts
@@ -191,10 +194,10 @@ public class ConversationScene extends AppCompatActivity {
                         changeSelectText3.setEnabled(true);
                     }
                     else if (conversationState == 5) {
-                        changeCardViewSelects.setVisibility(View.INVISIBLE);
+                        changeCharSelectTextView.setVisibility(View.INVISIBLE);
 
                         Typewriter writer = (Typewriter)findViewById(R.id.charTextView);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Circus Maximus'daki at arabası yarışları\ntabii ki! Bugün 250 Bin kişiden daha fazla\nkatılım olacağı düşünülüyor. Neyse,\ngörüşmek üzere!");
 
                         Typewriter writer2 = (Typewriter)findViewById(R.id.questionInfo);
@@ -202,6 +205,7 @@ public class ConversationScene extends AppCompatActivity {
                         writer2.animateText("");
 
                         //disable changeCharText
+                        changeCharTextButton.setVisibility(View.INVISIBLE);
                         changeCharTextButton.setEnabled(false);
 
                         final Handler handler = new Handler();
@@ -209,6 +213,7 @@ public class ConversationScene extends AppCompatActivity {
                             @Override
                             public void run() {
                                 //enable changeCharText
+                                changeCharTextButton.setVisibility(View.VISIBLE);
                                 changeCharTextButton.setEnabled(true);
                             }
                         }, 6000);
@@ -217,7 +222,7 @@ public class ConversationScene extends AppCompatActivity {
                     }
                     else if (conversationState == 6 && !conversationOver) {
                         Typewriter writer = (Typewriter)findViewById(R.id.charTextView);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Görüşürüz, Gallus.");
                         conversationOver = true;
                     }
@@ -227,13 +232,14 @@ public class ConversationScene extends AppCompatActivity {
                 }
                 else if (v.equals(changeSelectText1)) {
                     if(questionState == 1){
+                        System.out.println("WTF");
                         Typewriter writer = (Typewriter)findViewById(R.id.questionInfo);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Lütfen bir daha deneyin.");
                     }
                     else if(questionState == 2){
                         Typewriter writer = (Typewriter)findViewById(R.id.questionInfo);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Doğru seçenek!");
 
                         Typewriter writer3 = (Typewriter)findViewById(R.id.selectText1);
@@ -252,19 +258,15 @@ public class ConversationScene extends AppCompatActivity {
                         conversationState++;
                         questionOver = true;
 
-                        //disable selectTexts
-                        changeSelectText1.setEnabled(false);
-                        changeSelectText2.setEnabled(false);
-                        changeSelectText3.setEnabled(false);
-
                         //enable changeCharText
+                        changeCharTextButton.setVisibility(View.VISIBLE);
                         changeCharTextButton.setEnabled(true);
                     }
                 }
                 else if (v.equals(changeSelectText2)) {
                     if(questionState == 1){
                         Typewriter writer = (Typewriter)findViewById(R.id.questionInfo);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Doğru seçenek!");
 
                         Typewriter writer3 = (Typewriter)findViewById(R.id.selectText1);
@@ -279,12 +281,8 @@ public class ConversationScene extends AppCompatActivity {
                         writer5.setCharacterDelay(0);
                         writer5.animateText("");
 
-                        //disabled selectTexts
-                        changeSelectText1.setEnabled(false);
-                        changeSelectText2.setEnabled(false);
-                        changeSelectText3.setEnabled(false);
-
                         //enable changeCharText
+                        changeCharTextButton.setVisibility(View.VISIBLE);
                         changeCharTextButton.setEnabled(true);
 
                         questionState++;
@@ -292,28 +290,37 @@ public class ConversationScene extends AppCompatActivity {
                     }
                     else if(questionState == 2){
                         Typewriter writer = (Typewriter)findViewById(R.id.questionInfo);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Lütfen bir daha deneyin.");
                     }
                 }
                 else if (v.equals(changeSelectText3)) {
-                    if(questionState == 0){
+                    if(questionState == 1){
                         Typewriter writer = (Typewriter)findViewById(R.id.questionInfo);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Lütfen bir daha deneyin.");
                     }
-                    else if(questionState == 1){
+                    else if(questionState == 2){
                         Typewriter writer = (Typewriter)findViewById(R.id.questionInfo);
-                        writer.setCharacterDelay(50);
+                        writer.setCharacterDelay(40);
                         writer.animateText("Lütfen bir daha deneyin.");
                     }
                 }
             }
         };
 
+
+
         changeCharTextButton.setOnClickListener(listener);
         changeSelectText1.setOnClickListener(listener);
         changeSelectText2.setOnClickListener(listener);
         changeSelectText3.setOnClickListener(listener);
     }
+
+    public void onClick(View v){
+
+        System.out.println("clicked");
+
+    }
 }
+
