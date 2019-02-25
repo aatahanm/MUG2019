@@ -49,15 +49,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Button startButt = (Button)findViewById(R.id.startButton);
+                Button startButt = (Button) findViewById(R.id.startButton);
                 startButt.setEnabled(false);
 
                 //Hide left right buttons
-                if(first!=1){
+                if (first != 1) {
                     return;
                 }
-                ImageView leftButt = (ImageView)findViewById(R.id.leftArrow);
-                ImageView rightButt = (ImageView)findViewById(R.id.rightArrow);
+                ImageView leftButt = (ImageView) findViewById(R.id.leftArrow);
+                ImageView rightButt = (ImageView) findViewById(R.id.rightArrow);
                 leftButt.setVisibility(View.INVISIBLE);
                 rightButt.setVisibility(View.INVISIBLE);
 
@@ -65,24 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 playGif();
 
                 final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageView.setVisibility(View.INVISIBLE);
-                        b1.setVisibility(View.INVISIBLE);
-                    }
-                }, 10);
 
-                final Handler handler2 = new Handler();
-                handler2.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //change to first scene
-                        System.out.println("Intent olusturuluyor");
-                        Intent intent2 = new Intent(getApplicationContext(), CityDrawerActivity.class);
-                        startActivity(intent2);
-                    }
-                }, 2000);
+                imageView.setVisibility(View.INVISIBLE);
+                b1.setVisibility(View.INVISIBLE);
+
+
             }
         });
 
@@ -91,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
         images[2] = R.drawable.aztec_main_menu;
         view = (ImageView) findViewById(R.id.menuBackground);
         countryView = (TextView) findViewById(R.id.country);
-        startButton = (Button)findViewById(R.id.startButton);
+        startButton = (Button) findViewById(R.id.startButton);
         startButton.setEnabled(false);
     }
 
     public void playGif() {
         Animation fadeout = new AlphaAnimation(1.f, 1.f);
-        fadeout.setDuration(2500); // You can modify the duration here
+        fadeout.setDuration(5500); // You can modify the duration here
         fadeout.setAnimationListener(new Animation.AnimationListener() {
 
             @Override
@@ -112,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
 
+                System.out.println("Intent olusturuluyor");
+                Intent intent2 = new Intent(getApplicationContext(), CityDrawerActivity.class);
+                startActivity(intent2);
+
             }
         });
         gifImageView.startAnimation(fadeout);
@@ -119,15 +110,15 @@ public class MainActivity extends AppCompatActivity {
 
     //Mısır roma aztec
     public void onClickRight(View v) {
-        first = (first+ 1)%3;
+        first = (first + 1) % 3;
         setCountryName(first);
         view.setImageResource(images[first]);
     }
 
     public void onClickLeft(View v) {
 
-        first = (first - 1)%3;
-        if(first <0){
+        first = (first - 1) % 3;
+        if (first < 0) {
             first = first + 3;
         }
         setCountryName(first);
@@ -139,15 +130,15 @@ public class MainActivity extends AppCompatActivity {
         String countryName = "Mısır Uygarlığı";
         switch (select) {
             case 0:
-                countryName ="Mısır Uygarlığı";
+                countryName = "Mısır Uygarlığı";
                 startButton.setEnabled(false);
                 break;
             case 1:
-                countryName ="Roma İmparatorluğu";
+                countryName = "Roma İmparatorluğu";
                 startButton.setEnabled(true);
                 break;
             case 2:
-                countryName ="Aztec Uygarlığı";
+                countryName = "Aztec Uygarlığı";
                 startButton.setEnabled(false);
                 break;
         }
