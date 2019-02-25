@@ -1,23 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/menuBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@null"
-        android:visibility="visible"
         android:scaleType="centerCrop"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/earth_zooming" />
+        app:srcCompat="@drawable/egypt_main_menu"
+        tools:layout_editor_absoluteX="0dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:text="Dünya Tarihini Keşfet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/slogan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/imageViewGIF"
+        app:layout_constraintRight_toRightOf="@+id/menuBackground"
+        android:layout_marginBottom="250dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="#ffffff"
+        android:background="#80000000"
+        android:fontFamily="serif"
+        android:textSize="45dp" />
+
+    <TextView
+        android:text="Mısır Uygarlığı"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/country"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/imageViewGIF"
+        app:layout_constraintRight_toRightOf="@+id/menuBackground"
+        android:layout_marginBottom="250dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="#ffffff"
+        android:background="#80000000"
+        android:fontFamily="serif"
+        android:textSize="35dp"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/menuBackground"
+        android:layout_marginTop="150dp" />
 
     <pl.droidsonroids.gif.GifTextView
         android:id="@+id/imageViewGIF"
@@ -29,15 +68,14 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="200dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/alert_light_frame"
         android:clickable="true"
@@ -52,6 +90,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.75"
+        tools:layout_editor_absoluteX="196dp" />
+
+    <ImageView
+        android:id="@+id/leftArrow"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="200dp"
+        android:onClick="onClickLeft"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_left"
+        app:layout_constraintLeft_toLeftOf="@+id/imageViewGIF"
+        app:layout_constraintRight_toRightOf="@+id/imageViewGIF"
+        android:layout_marginBottom="165dp"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/rightArrow"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:layout_marginBottom="165dp"
+        android:onClick="onClickRight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/arrow_right"
+        app:layout_constraintLeft_toLeftOf="@+id/menuBackground"
+        app:layout_constraintRight_toRightOf="@+id/menuBackground"
+        app:layout_constraintTop_toTopOf="@+id/menuBackground"
+        android:layout_marginTop="200dp" />
 
 </android.support.constraint.ConstraintLayout>

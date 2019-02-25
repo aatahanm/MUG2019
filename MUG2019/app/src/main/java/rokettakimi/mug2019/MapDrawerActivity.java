@@ -227,7 +227,7 @@ public class MapDrawerActivity extends AppCompatActivity
     }
 
     public void conquerGaul(int count) {
-        if (getTroops) {
+        if (getTroops && !conqueredGaul) {
             View v = findViewById(R.id.background);
             while (count < 7 && !conqueredGaul) {
                 if (count == 1) {
@@ -325,12 +325,12 @@ public class MapDrawerActivity extends AppCompatActivity
     //////////////////////////////////////NAVIGATION DRAWER METHODS///////////////////////////////////
     @Override
     public void onBackPressed() {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }*/
+        }
     }
 
     @Override

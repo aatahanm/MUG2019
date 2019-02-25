@@ -131,8 +131,7 @@
             app:layout_constraintVertical_bias="0.13" />
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
             app:srcCompat="@drawable/scroll"
             android:id="@+id/scrollButton"
             android:background="@android:color/transparent"
@@ -143,7 +142,8 @@
             app:layout_constraintLeft_toLeftOf="@+id/background"
             app:layout_constraintRight_toRightOf="@+id/background"
             app:layout_constraintHorizontal_bias="0.66"
-            app:layout_constraintVertical_bias="0.41000003" />
+            app:layout_constraintVertical_bias="0.41000003"
+            android:layout_height="50dp" />
 
         <ImageButton
             android:layout_width="60dp"
@@ -160,6 +160,39 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintVertical_bias="0.99" />
 
+        <ImageButton
+            android:layout_width="40dp"
+            app:srcCompat="@drawable/puzzle_icon_white"
+            android:id="@+id/puzzle1Button"
+            android:onClick="onClick"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="40dp"
+            app:layout_constraintRight_toRightOf="@+id/background"
+            app:layout_constraintLeft_toLeftOf="@+id/background" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            app:srcCompat="@drawable/puzzle_icon_white"
+            android:id="@+id/puzzle2Button"
+            android:onClick="onClick"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="40dp"
+            app:layout_constraintRight_toRightOf="@+id/background"
+            app:layout_constraintLeft_toLeftOf="@+id/background"
+            app:layout_constraintHorizontal_bias="0.61"
+            app:layout_constraintVertical_bias="0.9" />
+
+
         <ImageView
             android:id="@+id/narrator"
             android:layout_width="130dp"
@@ -167,7 +200,7 @@
             android:layout_marginTop="266dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/narrator"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.03"
@@ -175,7 +208,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             app:layout_constraintLeft_toLeftOf="@+id/background"
-            app:layout_constraintRight_toRightOf="@+id/background" />
+            app:layout_constraintRight_toRightOf="@+id/background"
+            android:layout_marginStart="500dp" />
 
         <TextView
             android:id="@+id/narratorText"
@@ -188,7 +222,7 @@
             android:padding="0dp"
             android:textColor="@color/colorAccent"
             android:textSize="12dp"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

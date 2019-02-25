@@ -31,7 +31,8 @@
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/roman_statue_right" />
+        app:srcCompat="@drawable/roman_statue_right"
+        app:layout_constraintRight_toRightOf="@+id/charTextViewNextButton" />
 
     <ImageView
         android:id="@+id/sceneLeftChar"
@@ -63,7 +64,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="150dp">
 
         <rokettakimi.mug2019.Typewriter
             android:id="@+id/questionInfo"
@@ -81,7 +83,8 @@
             android:focusable="true"
             android:fontFamily="serif"
             android:paddingBottom="4dp"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            tools:textStyle="italic" />
 
         <rokettakimi.mug2019.Typewriter
             android:id="@+id/selectText2"
@@ -91,7 +94,8 @@
             android:focusable="true"
             android:fontFamily="serif"
             android:paddingBottom="4dp"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            tools:textStyle="italic" />
 
         <rokettakimi.mug2019.Typewriter
             android:id="@+id/selectText3"
@@ -102,7 +106,8 @@
             android:fontFamily="serif"
             android:paddingBottom="4dp"
             android:onClick="onClick"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            tools:textStyle="italic" />
     </LinearLayout>
 
     <FrameLayout
@@ -118,7 +123,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="200dp">
 
         <rokettakimi.mug2019.Typewriter
             android:id="@+id/charTextView"
@@ -128,7 +134,7 @@
             android:focusable="true"
             android:fontFamily="serif"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp" />
+            android:textSize="9dp" />
     </FrameLayout>
 
     <Button

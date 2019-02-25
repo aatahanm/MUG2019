@@ -228,8 +228,7 @@ public class ConversationScene extends AppCompatActivity {
                         conversationOver = true;
                     }
                     else if (conversationOver) {
-                        Intent intent = new Intent(getApplicationContext(), CityDrawerActivity.class);
-                        startActivity(intent);
+                        finish();
                         //exit to the other scene
                     }
                 }

@@ -17,7 +17,7 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="pantheon_desc">"Panteon latince \"tüm tanrıların tapınağı\" anlamına gelir ve ilk olarak Antik Roma'nın tüm tanrıları için tapınak olarak inşa edilmiştir. Tüm Roma yapıları içinde en iyi korunmuş olanı ve muhtemelen de dünyada döneminin en iyi korunmuş binasıdır." </string>
+    <string name="pantheon_desc">"Panteon latince \"tüm tanrıların tapınağı\" anlamına gelir ve ilk olarak Antik Roma'nın tüm tanrıları için  inşa edilmiştir. Tüm Roma yapıları içinde en iyi korunmuş olanı ve muhtemelen de dünyada döneminin en iyi korunmuş binasıdır." </string>
     <string name="barracks_desc">Roma\'lı askerler bu kışlalarda Roma ordusunun en önemli gücünü, taktiklerini öğreniyorlardı. Bu taktiklerinden en bilineni askerlerin kalkanlarından bir kale oluşturdukları Testudo formasyonudur.</string>
     <string name="colosseum_desc">Kolezyum gladyatör dövüşlerinin, idamların, tiyatro oyunlarının ve kutlamaların yapıldığı Roma İmparatorluğu\'nun en büyük arenasıdır. 2000 yaşındaki bu arena günümüze kadar gelebilmiştir.</string>
     <string name="temple_desc">Jüpiter Tapınağı Roma\'daki en önemli ve en büyük tapınaklardandır. MÖ 509 yılında yapılan tapınak, MÖ 83 yılında bir yangın sonucu yıkılmış ve Yunan tarzında yeniden yapılmıştır.</string>
@@ -39,7 +39,7 @@
     boyunca etkin direnç göstermişlerdir ve en güçlü kalelerinden bir Gergovia\'dır.</string>
 
     <string name="narrator_greeting">Milattan önce 58 yılında Roma\'ya hoşgeldin. Roma kenti
-    tarihteki en büyük imparatorluklardan biri olan Roma İmparatorluğu\nun başkentiydi. Bu güzel kentin
+    tarihteki en büyük imparatorluklardan biri olan Roma İmparatorluğu\'nun başkentiydi. Bu güzel kentin
     kültürünü ve mimarisini harita üstünden inceleyebilirsin.</string>
 
     <string name="narrator_map">Şu anda Roma İmparatorluğunu ve komşularını görüyorsun. Hırslı bir

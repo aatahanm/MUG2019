@@ -35,21 +35,26 @@ public class CityDrawerActivity extends AppCompatActivity
     private Animation fadeOut;
     private Animation fadeOutNarrator;
     private TextView cityTitle;
-    private MediaPlayer ring;
-    private boolean isPlayed;
+    private MediaPlayer theme;
+    private boolean isNarratorSpeaking;
+    private MediaPlayer mp;
+
+    public static final long NARRATOR_DURATION = 12000;
 
 
-    public final int FADE_OUT_DURATİON = 9000;
+    public final int FADE_OUT_DURATİON = 15000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_city_drawer);
 
+        System.out.println("city drawer calisti");
+        //Toast.makeText(getApplicationContext(),"city drawer calisti",Toast.LENGTH_SHORT).show();
         //Setting landscape orientation
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         //Hiding action bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_city_drawer);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -71,7 +76,7 @@ public class CityDrawerActivity extends AppCompatActivity
         //Constructing navigation content manager
         navContentManager = new NavigationContentManager(navigationImageView, pinNameView, pinOriginView, navigationContent);
 
-        //Fadeout animation
+        //Fadeout animation for initial writing
         fadeOut = new AlphaAnimation(1.0f, 0.0f);
         fadeOut.setDuration(FADE_OUT_DURATİON);
         fadeOut.setFillAfter(true);
@@ -81,9 +86,81 @@ public class CityDrawerActivity extends AppCompatActivity
         fadeOutNarrator.setDuration(2000);
         fadeOutNarrator.setFillAfter(true);
 
+        /*//Play Narrator for greetings
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                playNarrator(R.raw.narrator_greeting,getString(R.string.narrator_greeting),NARRATOR_DURATION);
+
+            }
+        }, 3000);
+
+        //Playing Theme
+        theme = MediaPlayer.create(getApplicationContext(), R.raw.gladiator_theme);
+        float leftVolume = (float) 0.07;
+        float rightVolume = (float) 0.07;
+        theme.setVolume(leftVolume, rightVolume);
+        if (!theme.isPlaying()) {
+
+            theme.start();
+        }*/
+
+        //Toast.makeText(getApplicationContext(),"on start calisti",Toast.LENGTH_SHORT).show();
+        //Play Narrator for greetings
+        playNarrator(R.raw.narrator_greeting,getString(R.string.narrator_greeting),NARRATOR_DURATION);
+        /*final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                playNarrator(R.raw.narrator_greeting,getString(R.string.narrator_greeting),NARRATOR_DURATION);
+
+            }
+        }, 3000);*/
+
+        //Playing Theme
+        theme = MediaPlayer.create(getApplicationContext(), R.raw.gladiator_theme);
+        float leftVolume = (float) 0.07;
+        float rightVolume = (float) 0.07;
+        theme.setVolume(leftVolume, rightVolume);
+        if (!theme.isPlaying()) {
+
+            theme.start();
+        }
+    }
+
+    /*protected void onStart(){
+        super.onStart();
+
+
+    }*/
+
+    @Override
+    public void onDestroy() {
+
+        if(mp!=null){
+            mp.stop();
+        }
+        if(theme!=null){
+            theme.stop();
+        }
+
+        super.onDestroy();
+    }
+
+
+    public void playNarrator(int soundID, String script,long durationInMilliseconds) {
+
+        Animation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+        fadeIn.setDuration(1200);
+        fadeIn.setFillAfter(true);
+
 
         TextView text = (TextView) findViewById(R.id.narratorText);
-        text.setText(getString(R.string.narrator_greeting));
+        text.setText(script);
+        //Narrator fades in first
+        findViewById(R.id.narrator).startAnimation(fadeIn);
+        findViewById(R.id.narratorText).startAnimation(fadeIn);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -93,25 +170,26 @@ public class CityDrawerActivity extends AppCompatActivity
                 findViewById(R.id.narratorText).startAnimation(fadeOutNarrator);
 
             }
-        }, 10000);
-        isPlayed = false;
-        ring = MediaPlayer.create(getApplicationContext(), R.raw.narrator_greeting);
-        if (!ring.isPlaying()) {
-            if (!isPlayed) {
-                ring.start();
-                isPlayed = true;
+        }, durationInMilliseconds);
+
+        if(mp==null){
+            System.out.println("mp start calisti null");
+            //Toast.makeText(getApplicationContext(),"mp start null calisti",Toast.LENGTH_SHORT).show();
+            mp = MediaPlayer.create(getApplicationContext(), soundID);
+            mp.start();
+        }else {
+            if (!mp.isPlaying()) {
+                mp = MediaPlayer.create(getApplicationContext(), soundID);
+                System.out.println("mp start calisti");
+                //Toast.makeText(getApplicationContext(),"city drawer calisti",Toast.LENGTH_SHORT).show();
+
+                mp.start();
             }
-
         }
+
+
+
     }
-
-
-    @Override
-    public void onDestroy() {
-        ring.stop();
-        super.onDestroy();
-    }
-
 
     public void onClick(View view) {
         int viewID = view.getId();
@@ -128,6 +206,7 @@ public class CityDrawerActivity extends AppCompatActivity
             case R.id.pantheonButton:
                 drawer.openDrawer(GravityCompat.START);
                 navContentManager.setNavigationDrawerContent(R.drawable.pantheon, "Pantheon Tapınağı", "Roma İmparatorluğu", getString(R.string.pantheon_desc));
+                playNarrator(R.raw.narrator_pantheon,"",15000);
                 break;
             case R.id.templeButton:
                 drawer.openDrawer(GravityCompat.START);
@@ -140,16 +219,17 @@ public class CityDrawerActivity extends AppCompatActivity
             case R.id.scrollButton:
                 System.out.println("scroll clicked");
                 Intent intent = new Intent(this, ConversationScene.class);
-                ring.stop();
+                mp.stop();
+                //theme.stop();
                 startActivity(intent);
 
                 break;
             case R.id.mapButton:
                 System.out.println("map clicked");
                 Intent intent2 = new Intent(this, MapDrawerActivity.class);
-                ring.stop();
+                mp.stop();
+                //theme.stop();
                 startActivity(intent2);
-
                 break;
         }
     }
@@ -162,7 +242,7 @@ public class CityDrawerActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
